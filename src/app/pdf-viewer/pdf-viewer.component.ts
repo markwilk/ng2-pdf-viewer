@@ -413,7 +413,10 @@ export class PdfViewerComponent
       this.textLayerRendered.emit(e);
     });
 
-    this.pdfMultiPageLinkService = new PDFJSViewer.PDFLinkService({ eventBus });
+    this.pdfMultiPageLinkService = new PDFJSViewer.PDFLinkService({
+      externalLinkTarget: this._externalLinkTarget,
+      eventBus
+    });
     this.pdfMultiPageFindController = new PDFJSViewer.PDFFindController({
       linkService: this.pdfMultiPageLinkService,
       eventBus
@@ -457,7 +460,8 @@ export class PdfViewerComponent
     });
 
     this.pdfSinglePageLinkService = new PDFJSViewer.PDFLinkService({
-      eventBus
+      externalLinkTarget: this._externalLinkTarget,
+      eventBus: eventBus
     });
     this.pdfSinglePageFindController = new PDFJSViewer.PDFFindController({
       linkService: this.pdfSinglePageLinkService,
